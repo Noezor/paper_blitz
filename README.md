@@ -2,4 +2,4 @@
 
 Architecture :
 
-![Architecture][https://github.com/Noezor/paper_blitz/paper-blitz.png]
+![Architecture][./blob/master/paper-blitz.png]
