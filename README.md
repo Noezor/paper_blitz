@@ -2,4 +2,4 @@
 
 Architecture :
 
-![Architecture][./blob/master/paper-blitz.png]
+![Architecture][../blob/master/paper-blitz.png]
