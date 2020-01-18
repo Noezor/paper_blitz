@@ -1,10 +1,11 @@
-from article import Article, Author
+from article import Article
 
 class Arxiv_Parser:
     def parse(self, link : str) -> Article:
-        pass
+        return Article(link = link, title = title, authors = authors, date_publication = date_publication,
+            venue = venue)
 
-    def correct(self, link : str) -> str:
+    def corrects_link(self, link : str) -> str:
         """
         returns corrected arxiv link
         """
