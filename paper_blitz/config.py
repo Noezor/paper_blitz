@@ -1,3 +1,4 @@
+from pathlib import Path
 import os
 
 from flask import Flask
@@ -13,6 +14,9 @@ app = Flask(__name__)
 app.config['SQLALCHEMY_ECHO'] = True
 app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:////' + \
     os.path.join(basedir, 'paper-blitz.db')
+
+print('sqlite:////' + \
+    os.path.join(basedir, 'paper-blitz.db'))
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 
 # Create the SQLAlchemy db instance
@@ -20,8 +24,3 @@ db = SQLAlchemy(app)
 
 # Initialize Marshmallow
 ma = Marshmallow(app)
-
-print("config all good")
-
-if __name__ == '__main__':
-    app.run()
