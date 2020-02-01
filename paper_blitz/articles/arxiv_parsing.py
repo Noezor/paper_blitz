@@ -8,12 +8,12 @@ from paper_blitz.articles.article import Article
 class Arxiv_Parser:
     def scrape(self, link : str) -> Article:
         link_url = self.correct_link(link)
-
+        print(f"Scrapping {link_url}")
         response = requests.get(link_url)
         soup = BeautifulSoup(response.text, "html.parser")
         
         title = self.get_title(soup)
-        publication_date = self.get_submission_date(soup)
+        # publication_date = self.get_submission_date(soup)
         authors = self.get_authors(soup)
 
         return Article(link = link, title = title, authors = authors)
@@ -35,4 +35,4 @@ class Arxiv_Parser:
         return link
 
     def _correct_pdf_link(self, link : str ) -> str:
-        return link.replace('/pdf/', '/abs/')
+        return link.replace('/pdf/', '/abs/').rstrip(".pdf")

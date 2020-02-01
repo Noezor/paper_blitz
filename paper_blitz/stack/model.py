@@ -10,11 +10,11 @@ class Group(db.Model):
     __tablename__ = "group"
 
     id = db.Column(db.Integer(), primary_key  = True)
-    
     name = db.Column(db.String, unique = True)
 
     participants = db.relationship("Participant", back_populates="group")
-
+    submitted_articles = db.relationship("Stack")
+    
     def __repr__(self):
         return f"<Group {self.name}>"
 
@@ -41,7 +41,6 @@ class Participant(db.Model):
     def __repr__(self):
         return f"<Participant {self.username}>"
 
-
 class Stack(db.Model):
     __tablename__ = "stack"
 
@@ -49,12 +48,14 @@ class Stack(db.Model):
 
     article_id = db.Column(db.Integer(), db.ForeignKey("article.id"))
     poster_id = db.Column(db.Integer(), db.ForeignKey("participant.id"))
+    group_id = db.Column(db.Integer(), db.ForeignKey("group.id"))
 
     added = db.Column(db.DateTime, default = datetime.utcnow, onupdate = datetime.utcnow)
     presented = db.Column(db.DateTime)
 
     article = db.relationship("Article")
     poster = db.relationship("Participant", back_populates = "submitted_articles")
+    group = db.relationship("Group", back_populates = "submitted_articles")
 
     def is_presented(self):
         return bool(self.presented)
