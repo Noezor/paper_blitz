@@ -50,7 +50,7 @@ class Stack(db.Model):
     poster_id = db.Column(db.Integer(), db.ForeignKey("participant.id"))
     group_id = db.Column(db.Integer(), db.ForeignKey("group.id"))
 
-    added = db.Column(db.DateTime, default = datetime.utcnow, onupdate = datetime.utcnow)
+    added = db.Column(db.DateTime, default = datetime.utcnow)
     presented = db.Column(db.DateTime)
 
     article = db.relationship("Article")
