@@ -59,3 +59,6 @@ class Stack(db.Model):
 
     def is_presented(self):
         return bool(self.presented)
+
+    def __repr__(self):
+        return f"<Stack {self.id}> :({self.article}, {self.poster}, {self.group})"
