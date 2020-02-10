@@ -6,7 +6,7 @@ from datetime import datetime, timedelta
 
 
 class Article_Selector_Survey(object):
-    def select_articles(self, group : Group, current_date : datetime):
+    def select_articles(self, group : Group):
         non_presented_articles = group.non_presented_articles()
         
         articles_current_week = [article for article in non_presented_articles if self.is_submission_current_week(article)]
