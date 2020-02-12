@@ -13,13 +13,14 @@ def test_1():
     if Group.query.filter(Group.name == group.name).one_or_none():
        group =  Group.query.filter(Group.name == group.name).one_or_none()
 
-    poster = Participant(username = "npion", first_name = "Noe", last_name = "Pion", mail = "noe.pion@gmail.com", group = group)
-
     posters = [Participant(username = "npion", first_name = "Noe", last_name = "Pion", mail = "noe.pion@gmail.com", group = group),\
         Participant(username = "mhumenberger", first_name = "Martin", last_name = "Humenberger", mail = "martin.humenberger@gmail.com", group = group),\
         Participant(username = "asadek", first_name = "Assem", last_name = "Sadek", mail = "assem.sadek@gmail.com", group = group)\
     ]
  
+    for poster in posters:
+        db.session.add(poster)
+    db.session.commit()
     print(Participant.query.filter(Participant.username == 'npion').one_or_none())
 
     links = ["https://arxiv.org/abs/2001.08972","https://arxiv.org/abs/2001.08248v1","https://arxiv.org/pdf/1511.06422.pdf","https://arxiv.org/abs/1912.00385","https://arxiv.org/abs/2001.07252",\

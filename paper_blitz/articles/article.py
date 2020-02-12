@@ -14,13 +14,7 @@ class Article(db.Model):
     authors = db.Column(db.String)
     link = db.Column(db.String, unique = True)
     timestamp = db.Column(db.DateTime, 
-                            default = datetime.utcnow,
-                            onupdate = datetime.utcnow)
+                            default = datetime.utcnow)
 
     def __repr__(self):
         return f"<Article {self.id} : {self.title}>"
-
-class ArticleSchema(ma.ModelSchema):
-    class Meta: 
-        model = Article
-        sqla_session = db.session

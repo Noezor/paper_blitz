@@ -1,8 +1,8 @@
 from typing import List
 from datetime import datetime
 
-import sys
-
+from paper_blitz.articles.article import Article
+from paper_blitz.survey.model import Vote
 from paper_blitz.config import db, ma
 
 
@@ -24,6 +24,7 @@ class Group(db.Model):
 
         return articles
 
+
 class Participant(db.Model):
     __tablename__ = "participant"
 
@@ -41,6 +42,7 @@ class Participant(db.Model):
     def __repr__(self):
         return f"<Participant {self.username}>"
 
+
 class Stack(db.Model):
     __tablename__ = "stack"
 
@@ -56,9 +58,12 @@ class Stack(db.Model):
     article = db.relationship("Article")
     poster = db.relationship("Participant", back_populates = "submitted_articles")
     group = db.relationship("Group", back_populates = "submitted_articles")
+    votes = db.relationship("Vote")
 
     def is_presented(self):
         return bool(self.presented)
 
     def __repr__(self):
-        return f"<Stack {self.id}> :({self.article}, {self.poster}, {self.group})"
+        return f"<Stack {self.id}> :({self.article}, {self.poster}, {self.group}, #votes {len(self.votes)})"
+
+
